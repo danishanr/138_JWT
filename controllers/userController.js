@@ -69,7 +69,7 @@ async function login(req, res){
 
         if (!isMatch) {
             return res.status(401).json({
-                message: "Email atau passowrd salah."
+                message: "Email atau password salah."
             });
         }
 
@@ -86,6 +86,7 @@ async function login(req, res){
 
         return res.status(200).json({
             message: "Login berhasil.",
+            token
         });
 
     } catch (error) {

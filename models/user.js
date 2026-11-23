@@ -2,8 +2,8 @@ module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define("User", {
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         email: {
             type: DataTypes.STRING,
@@ -15,6 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     });
-    
+
     return User;
 };

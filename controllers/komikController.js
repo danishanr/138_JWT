@@ -30,12 +30,12 @@ async function createKomik(req, res) {
         const newKomik = await db.Komik.create({ title, description, author });
         res.status(201).json(newKomik);
     } catch (err) {
-        ContentVisibilityAutoStateChangeEvent.error('Error creating komik:', err.message);
+        console.error('Error creating komik:', err.message);
         res.status(500).json({ error: 'Failed to create komik' });
     }
 }
 
-async function updateKomik(res, res) {
+async function updateKomik(req, res) {
     const {id} = req.params;
     const { title, description, author } = req.body;
     try {
@@ -57,19 +57,19 @@ async function updateKomik(res, res) {
 async function deleteKomik(req, res) {
     const { id } = req.params;
     try {
-        const komik = await db.komik.findByPk(id);
+        const komik = await db.Komik.findByPk(id);
         if (!komik) {
             return res.status(404).json({ error: 'Komik not found' });
         }
         await komik.destroy();
-        res.staus(200).json({ message: 'Komik deleted successfully' });
+        res.status(200).json({ message: 'Komik deleted successfully' });
     } catch (err) {
         console.error('Error deleting komik:', err.message);
         res.status(500).json({ error: 'Failed to delete komik' });
     }
 }
 
-module.export = {
+module.exports = {
     getAllKomik,
     getKomikById,
     createKomik,
